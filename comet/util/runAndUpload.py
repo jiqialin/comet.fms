@@ -11,12 +11,12 @@ import requests
 from httprunner.api import HttpRunner
 from comet.util.parserIni import getConfigValue
 from comet.util.DataCombing import dataManipulation
-runner = HttpRunner()
 
 
 class RunCaseAndUpload(object):
 
     def __init__(self, **kwargs):
+        self.runner = HttpRunner()
         self.summary = self._runTestCase()
         self.section = kwargs.get('section')
         self.build_id = kwargs.get('buildId')
@@ -35,12 +35,12 @@ class RunCaseAndUpload(object):
             raise FileNotFoundError
 
         elif os.getenv("TEST_ENV") == 'txy':
-            runner.run(path, dot_env_path=dot_env_path, mapping=maping)
-            return runner.summary
+            self.runner.run(path, dot_env_path=dot_env_path, mapping=maping)
+            return self.runner.summary
 
         elif os.getenv("TEST_ENV") == 'docker':
-            runner.run(path, dot_env_path='doc.env', mapping=maping)
-            return runner.summary
+            self.runner.run(path, dot_env_path='doc.env', mapping=maping)
+            return self.runner.summary
 
     def uploadDataToStargazing(self, **kwargs):
         """

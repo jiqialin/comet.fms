@@ -17,22 +17,22 @@ def dataManipulation(summary, section=None,  **kwargs):
     :param kwargs: anything
     :return: list
     """
-    result_list = []
+    result = dict()
     if summary and isinstance(summary, dict):
-        result = dict()
         test_cases = summary['stat']['testcases']
 
+        result['projectId'] = ''
+        result['testTime'] = test_cases.get('test')
         result['total'] = test_cases.setdefault('total', 0)
         result['passCount'] = test_cases.setdefault('success', 0)
         result['failCount'] = test_cases.setdefault('fail', 0)
         result['skipCount'] = test_cases.setdefault('skip', 0)
-        result['testTime'] = test_cases.setdefault('test')
-        result['department'] = getConfigValue(section, 'department')
+
         result['type'] = getConfigValue(section, 'type')
-        result['verticalGroup'] = getConfigValue(section, 'businessGroup')
-        result['businessLine'] = getConfigValue(section, 'businessLine')
-        result['projectId'] = ''
-        result['buildId'] = kwargs.get('build_id')
+        result['department'] = getConfigValue(section, 'department')
         result['projectName'] = getConfigValue(section, 'projectName')
-        result_list.append(result)
-        return result_list
+        result['businessLine'] = getConfigValue(section, 'businessLine')
+        result['verticalGroup'] = getConfigValue(section, 'businessGroup')
+
+        result['buildId'] = kwargs.get('build_id')
+        return result
