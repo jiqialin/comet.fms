@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: comet.fms
+Version: 0.1.1
+Summary: 
+    Used to integrate the httpRunner framework, join up CI/CD to the platform, and upload the results to the platform
+    
+Home-page: https://github.com/jiqialin/comet.fms
+Author: Angst
+Author-email: 281491920@qq.com
+License: Angst 1.0
+Description: Just Enjoy:
+        Welcome to Comet!
+Keywords: python httpRunner jenkins comet.fms terminal CI/CD
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries

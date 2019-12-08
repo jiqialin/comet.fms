@@ -1,0 +1,3 @@
+[console_scripts]
+comet.fms = comet.comet:MainRun
+
