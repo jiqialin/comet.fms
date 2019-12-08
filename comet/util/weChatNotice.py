@@ -6,9 +6,8 @@
 @开发工具: PyCharm
 @创建时间: 2019/12/6 14:45
 """
-
-import requests
 import demjson
+import requests
 from comet.util.DataCombing import dataManipulation
 import time
 

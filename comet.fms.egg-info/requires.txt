@@ -1,4 +1,0 @@
-requests
-httprunner
-pymysql
-requests-toolbelt
