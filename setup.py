@@ -7,11 +7,12 @@
 @创建时间: 2019/12/5 14:35
 """
 
-import os
-from setuptools import setup, find_packages
+import os, sys
+from shutil import rmtree
+from setuptools import setup, find_packages, Command
 
-
-VERSION = '0.1.1'
+APP_NAME = 'comet'
+VERSION = '0.1.2'
 DESCRIPTION = """
     Used to integrate the httpRunner framework, join up CI/CD to the platform, and upload the results to the platform
     """
@@ -19,12 +20,42 @@ PROJECTS = 'https://github.com/jiqialin/comet.fms'
 HERE = os.path.abspath(os.path.dirname(__file__))
 
 __version__ = None
-with open("comet/models/version.py", 'rb') as f:
-    exec(f.read())
+
+about = dict()
+if not VERSION:
+    with open(os.path.join(HERE, APP_NAME, 'models\__version__.py'), 'rb') as f:
+        exec(f.read(), about)
+else:
+    about['__version__'] = VERSION
+
 
 # Get the long description from the README file
 with open(os.path.join(HERE, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
+
+
+class UploadCommand(Command):
+    """Support setup.py upload."""
+    ...
+
+    def run(self):
+        try:
+            self.status('Removing previous builds…')
+            rmtree(os.path.join(HERE, 'dist'))
+        except OSError:
+            pass
+
+        self.status('Building Source and Wheel (universal) distribution…')
+        os.system('{0} setup.py sdist bdist_wheel --universal'.format(sys.executable))
+
+        self.status('Uploading the package to PyPI via Twine…')
+        os.system('twine upload dist/*')
+
+        self.status('Pushing git tags…')
+        os.system('git tag v{0}'.format(about['__version__']))
+        os.system('git push --tags')
+
+        sys.exit()
 
 
 setup(
@@ -47,7 +78,7 @@ setup(
     author='Angst',
     author_email='281491920@qq.com',
     url=PROJECTS,
-    license='Angst 1.0',
+    license='Apache-2.0',
     packages=find_packages(),
     include_package_data=True,
     zip_safe=True,

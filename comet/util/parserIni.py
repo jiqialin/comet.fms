@@ -24,6 +24,4 @@ def getConfigValue(section, key):
     :param key:
     :return:
     """
-    return eval(getIniPath().get(section, key))
-
-
+    return getIniPath().get(section, key)

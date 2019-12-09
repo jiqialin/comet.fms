@@ -12,6 +12,7 @@ from comet.util.DataCombing import dataManipulation
 import time
 
 
+# noinspection PyBroadException
 class WeChatNotice(object):
     def __init__(self, summary, report_url, obj):
 
@@ -31,14 +32,15 @@ class WeChatNotice(object):
         if self.obj.test_type == 0:
 
             info = f""" 
-            ### {now_time}<font color=\"info\">{caseInfo['projectName']}</font>接口测试发布\n
-            ### 执行用例数<font color=\"info\"> {caseInfo['total']}条</font>, 
+            ### {now_time}<font color=\"info\">{caseInfo['projectName']}</font>接口测试发布\n \
+            ### 执行用例数<font color=\"info\"> {caseInfo['total']}条</font>, \
             请相关同事注意 <font color=\"info\"> {caseInfo['at']}</font>\n \
             "> 成功用例数： <font color=\"comment\">{caseInfo['success']}条</font> \n \
             "> 失败用例数： <font color=\"warning\">{caseInfo['fail']}条</font> \n \
             "> 跳过用例数： <font color=\"comment\">{caseInfo['skip']}条</font> \n \
             ">【报告地址】：[点击查看测试报告]({self.reportUrl})
         """
+
             messages = dict(msgtype='markdown', markdown={'content': info})
             return messages
 

@@ -1,2 +1,1 @@
-
-Welcome to Comet!
+This is a simple example package

@@ -42,15 +42,14 @@ class RunCaseAndUpload(object):
             self.runner.run(path, dot_env_path='doc.env', mapping=maping)
             return self.runner.summary
 
-    def uploadDataToStargazing(self, **kwargs):
+    def uploadDataToStargazing(self):
         """
             Processing is completed the processing of the results will be uploaded to stargazing platform.
-        :param kwargs: Get the build ID
         :return:
         """
         headers = {'Content-Type': 'application/json'}
         url = getConfigValue('stargazing', 'total')
-        data = dataManipulation(self.summary, self.section, **kwargs)
+        data = dataManipulation(self.summary, self.section, buildId=self.build_id)
         # noinspection PyBroadException
         try:
             response = requests.post(url, json=data, headers=headers)

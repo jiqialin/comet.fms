@@ -19,20 +19,20 @@ def dataManipulation(summary, section=None,  **kwargs):
     """
     result = dict()
     if summary and isinstance(summary, dict):
-        test_cases = summary['stat']['testcases']
+        params = summary.get('stat').get('testcases')
 
         result['projectId'] = ''
-        result['testTime'] = test_cases.get('test')
-        result['total'] = test_cases.setdefault('total', 0)
-        result['passCount'] = test_cases.setdefault('success', 0)
-        result['failCount'] = test_cases.setdefault('fail', 0)
-        result['skipCount'] = test_cases.setdefault('skip', 0)
+        result['testTime'] = params.get('test')
+        result['total'] = params.setdefault('total', 0)
+        result['passCount'] = params.setdefault('success', 0)
+        result['failCount'] = params.setdefault('fail', 0)
+        result['skipCount'] = params.setdefault('skip', 0)
 
-        result['type'] = getConfigValue(section, 'type')
+        result['type'] = getConfigValue(section, 'project.type')
         result['department'] = getConfigValue(section, 'department')
-        result['projectName'] = getConfigValue(section, 'projectName')
-        result['businessLine'] = getConfigValue(section, 'businessLine')
-        result['verticalGroup'] = getConfigValue(section, 'businessGroup')
+        result['projectName'] = getConfigValue(section, 'project.name')
+        result['businessLine'] = getConfigValue(section, 'business.line')
+        result['verticalGroup'] = getConfigValue(section, 'business.group')
 
         result['buildId'] = kwargs.get('build_id')
         return result
