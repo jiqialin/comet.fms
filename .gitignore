@@ -5,7 +5,7 @@
 .Python
 [Bb]in
 [Ii]nclude
-[Ll]ib
+
 [Ll]ib64
 [Ll]ocal
 [Ss]cripts
@@ -16,21 +16,19 @@ pip-selfcheck.json
 ### Python template
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
+
 *$py.class
 
 # C extensions
 *.so
 
 # Distribution / packaging
-.Python
 build/
 develop-eggs/
 dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -113,7 +111,6 @@ celerybeat-schedule
 
 # Environments
 .env
-.venv
 env/
 venv/
 ENV/
@@ -138,3 +135,10 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+.idea/comet.fms.iml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vagrant.xml
+.idea/workspace.xml
+comet/util/properties.ini
